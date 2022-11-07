@@ -6,6 +6,9 @@
 #include <unistd.h>     // read, write, close
 #include <string.h>
 
+#define REDIS_IP "127.0.0.1"
+#define REDIS_PORT 6379
+
 #define MAX_MESSAGE_SIZE 255
 #define MAX_KEY_SIZE 64
 #define MAX_VALUE_SIZE 64
@@ -16,6 +19,7 @@
 //default ports if is not ussed
 #define DEFAULT_PORT_MIN 35070
 #define DEFAULT_PORT_MAX 35079
+
 
 int procesResponse(char out[]);
 
@@ -32,17 +36,17 @@ int create_connection(int port){
     setsockopt(client, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
     my_addr.sin_family = AF_INET;
     my_addr.sin_addr.s_addr = INADDR_ANY;
-    my_addr.sin_port = htons(6379);
+    my_addr.sin_port = htons(REDIS_PORT);
      
     // This ip address will change according to the machine
-    my_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    my_addr.sin_addr.s_addr = inet_addr(REDIS_IP);
     if (port != 0 ){
       // binding client with default port
       my_addr1.sin_family = AF_INET;
       my_addr1.sin_addr.s_addr = INADDR_ANY;
-      my_addr1.sin_port = htons(12011);
+      my_addr1.sin_port = htons(port);
       
-      my_addr1.sin_addr.s_addr = inet_addr("127.0.0.1");
+      my_addr1.sin_addr.s_addr = inet_addr(REDIS_IP);
 
       int reuse = 1;
       if (setsockopt(client, SOL_SOCKET, SO_REUSEPORT, (const char*)&reuse, sizeof(reuse)) < 0) 
@@ -199,10 +203,6 @@ int doSET(char key[],  char value[], char time_expire[]){
   close(socket_file_descriptor);
   
   return 1;
-}
-
-int processSETOutput(){
-  
 }
 
 
