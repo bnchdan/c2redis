@@ -60,7 +60,7 @@ int create_connection(int port){
         //printf("Client Connected, port: %d\n", port);
     }
     else{
-        printf("Error in Connection\n"); 
+        //printf("Error in Connection\n"); 
         return 0;
     }
 
@@ -133,7 +133,7 @@ int doGET(char key[]){
   char out[MAX_MESSAGE_SIZE];
   int num_read = read(socket_file_descriptor, out, sizeof(out));
   
-  printf("\nout %s : %d\n", out, strlen(out));
+  printf("\nout %s \n", out);
 
   //close socket
   close(socket_file_descriptor);
@@ -187,17 +187,13 @@ int doSET(char key[],  char value[], char time_expire[]){
   //send to redis
   write(socket_file_descriptor, command, sizeof(command));
 
-  // printf("sleep");
-  // sleep(30);
-  // printf("wake");
-
   //read output from redis
   char out[MAX_MESSAGE_SIZE];
   bzero(out, MAX_MESSAGE_SIZE);
 
   int num_read = read(socket_file_descriptor, out, sizeof(out));
   
-  printf("\nout %s : %d", out, strlen(out));
+  printf("\nout %s ", out);
 
   //close socket
   close(socket_file_descriptor);
@@ -238,7 +234,7 @@ int doPing(){
 
   int num_read = read(socket_file_descriptor, out, sizeof(out));
   
-  printf("\nout %s : %d\n", out, strlen(out));
+  printf("\nout %s \n", out);
   
   //close socket
   close(socket_file_descriptor);
