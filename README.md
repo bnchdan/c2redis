@@ -1,6 +1,6 @@
 # c2redis
 
-simple example of  C client implementation for redis 
+Example on how to implement a C Redis client.
 
 https://redis.io/docs/reference/protocol-spec/
 
