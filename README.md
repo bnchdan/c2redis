@@ -6,6 +6,9 @@ https://redis.io/docs/reference/protocol-spec/
 
 sysctl net.ipv4.tcp_tw_reuse=1 
 
+gcc -o main main.c
+
+
 ##### example
 ```
 ...
