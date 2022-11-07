@@ -4,7 +4,13 @@ Example on how to implement a C Redis client.
 
 https://redis.io/docs/reference/protocol-spec/
 
+
+
 sysctl net.ipv4.tcp_tw_reuse=1 
+https://support.hpe.com/hpesc/public/docDisplay?docId=c03067198&docLocale=en_US
+
+
+
 
 gcc -o main main.c
 
