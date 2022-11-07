@@ -16,12 +16,18 @@
 
 #define TIMEOUT 5000 //timeout[us] for redis client
 
-//default ports if is not ussed
+//default ports if is available
 #define DEFAULT_PORT_MIN 35070
 #define DEFAULT_PORT_MAX 35079
 
 
 int procesResponse(char out[]);
+int create_connection(int port);
+int connect2redis();
+int doGET(char key[]);
+int doSET(char key[],  char value[], char time_expire[]);
+int doPing();
+void doCommand(char command[]);
 
 int create_connection(int port){
     struct sockaddr_in my_addr, my_addr1;
